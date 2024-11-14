@@ -1,39 +1,27 @@
-from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from typing import List, Dict, Optional
+from typing import Dict, List, Optional
+import re
 
-@dataclass
-class AgentState:
-    location: str
-    time: str
-    knowledge: Dict[str, any]
-    emotions: Dict[str, float]
-
-class BaseAgent(ABC):
-    def __init__(self, name: str, age: int, persona: str):
+class BaseAgent:
+    def __init__(self, name: str, age: int, personality: List[str], location: str):
         self.name = name
         self.age = age
-        self.persona = persona
-        self.state = AgentState(
-            location="",
-            time="9:00",
-            knowledge={},
-            emotions={}
-        )
-        self.dialogue_history = []
-
-    @abstractmethod
-    def act(self, context: Dict) -> Dict:
-        """Generate next action based on current context"""
-        pass
-
-    @abstractmethod
-    def respond(self, message: str) -> str:
-        """Generate response to interaction"""
-        pass
-
-    def update_state(self, new_state: Dict):
-        """Update agent's internal state"""
-        for key, value in new_state.items():
-            if hasattr(self.state, key):
-                setattr(self.state, key, value) 
+        self.personality = personality
+        self.location = location
+        self.memory = []
+        self.current_state = "idle"
+        
+    def process_input(self, user_input: str, game_state: 'GameState') -> str:
+        """Process user input and return response based on agent's personality and state"""
+        raise NotImplementedError
+        
+    def update_state(self, new_state: str):
+        """Update agent's current state"""
+        self.current_state = new_state
+        
+    def remember(self, event: str):
+        """Add event to agent's memory"""
+        self.memory.append(event)
+        
+    def get_personality_modifier(self) -> float:
+        """Return a modifier based on personality traits"""
+        return 1.0 
