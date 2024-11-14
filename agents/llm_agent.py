@@ -1,112 +1,72 @@
-from langchain_community.chat_models import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
-from langchain.memory import ConversationBufferMemory
-from langchain.chains import LLMChain
 from typing import Dict, List, Optional
-import json
-from config.settings import get_llm_config, get_agent_config, get_prompt_template
+from openai import OpenAI
+import os
+from dotenv import load_dotenv
+from .base_agent import BaseAgent
 
-class LLMAgent:
-    def __init__(
-        self,
-        name: str,
-        age: int,
-        persona: str,
-        backstory: str,
-        personality: str,
-        initial_state: Dict
-    ):
-        self.name = name
-        self.age = age
-        self.persona = persona
-        self.backstory = backstory
-        self.personality = personality
-        self.state = initial_state
+class LLMAgent(BaseAgent):
+    def __init__(self, name: str, age: int, personality: List[str], location: str, 
+                 character_prompt: str, initial_state: str):
+        super().__init__(name, age, personality, location)
+        self.character_prompt = character_prompt
+        self.current_state = initial_state
         
-        # Get configurations
-        llm_config = get_llm_config()
-        agent_config = get_agent_config()
+        # Load environment variables from .env file
+        load_dotenv()
         
-        # Prepare LLM configuration
-        model_config = {
-            "temperature": llm_config.get("temperature", 0.7),
-            "model_name": llm_config.get("api_model", "gpt-3.5-turbo"),
-            "openai_api_key": llm_config.get("api_key"),
-            "base_url": llm_config.get("api_base"),
-            "request_timeout": llm_config.get("request_timeout", 60),
-            "max_tokens": llm_config.get("max_tokens", 1000)
-        }
-        
-        # Initialize LLM
-        self.llm = ChatOpenAI(**model_config)
-        
-        # Initialize memory
-        self.memory = ConversationBufferMemory(**agent_config)
-        
-        # Create prompt templates
-        self.base_prompt = ChatPromptTemplate.from_template(
-            get_prompt_template("base_dialogue")
+        # Initialize OpenAI client with environment variables
+        self.client = OpenAI(
+            api_key=os.getenv('OPENAI_API_KEY'),
+            base_url=os.getenv('OPENAI_API_BASE')
         )
+        self.use_llm = True
         
-        self.action_prompt = ChatPromptTemplate.from_template(
-            get_prompt_template("action_choice")
-        )
-        
-        # Create chains
-        self.dialogue_chain = LLMChain(
-            llm=self.llm,
-            prompt=self.base_prompt,
-            memory=self.memory
-        )
-        
-        self.action_chain = LLMChain(
-            llm=self.llm,
-            prompt=self.action_prompt
-        )
+    def _generate_llm_response(self, 
+                             user_input: str, 
+                             context: Dict,
+                             state_prompts: Dict[str, str],
+                             additional_context: str = "") -> str:
+        """Unified LLM response generation"""
+        if not self.use_llm:
+            return self._get_fallback_response()
+            
+        base_prompt = f"""{self.character_prompt}
 
-    def get_prompt_variables(self, current_situation: str) -> Dict:
-        """Get variables for prompt templates"""
-        return {
-            "name": self.name,
-            "age": self.age,
-            "backstory": self.backstory,
-            "personality": self.personality,
-            "emotions": json.dumps(self.state["emotions"]),
-            "location": self.state["location"],
-            "time": self.state["time"],
-            "current_situation": current_situation,
-            "chat_history": self.memory.buffer if hasattr(self.memory, 'buffer') else ""
-        }
+Current location: {self.location}
+Current state: {state_prompts[self.current_state]}
+Time: {context['game_state'].current_time}
+{additional_context}
 
-    async def act(self, context: Dict) -> Dict:
-        """Generate next action based on context"""
-        vars = self.get_prompt_variables(context["situation"])
-        vars["available_actions"] = json.dumps(context["available_actions"])
-        
+The person just said: "{user_input}"
+
+Respond in character as {self.name}. Response should be either:
+- A single line of dialogue
+- An action description (starting with *)"""
+
         try:
-            response = await self.action_chain.ainvoke(vars)
-            response_text = response.get('text', '{}')
-            action_data = json.loads(response_text)
-            return action_data
+            response = self.client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": base_prompt},
+                    {"role": "user", "content": user_input}
+                ],
+                temperature=0.7,
+                max_tokens=100
+            )
+            return response.choices[0].message.content.strip()
         except Exception as e:
-            print(f"Error in act: {e}")
-            return {"action": "wait", "dialogue": None}
-
-    async def respond(self, message: str, situation: str) -> str:
-        """Generate response to interaction"""
-        vars = self.get_prompt_variables(situation)
-        vars["input"] = message
+            print(f"LLM Error: {str(e)}")
+            return self._get_fallback_response()
+            
+    def _get_fallback_response(self) -> str:
+        """Get appropriate fallback response based on current state"""
+        # Default implementation - should be overridden by child classes
+        return f"*{self.name} maintains their current position*"
         
-        try:
-            response = await self.dialogue_chain.ainvoke(vars)
-            self.update_emotional_state(message, response.get('text', ''))
-            return response.get('text', '')
-        except Exception as e:
-            print(f"Error in respond: {e}")
-            return "..."
-
-    def update_emotional_state(self, input_msg: str, response: str):
-        """Update emotional state based on interaction"""
-        if any(word in input_msg.lower() for word in ["hope", "future", "chance"]):
-            self.state["emotions"]["hope"] = min(1.0, self.state["emotions"]["hope"] + 0.1)
-            self.state["emotions"]["despair"] = max(0.0, self.state["emotions"]["despair"] - 0.1)
+    def _get_scripted_action(self, game_state: 'GameState') -> Optional[str]:
+        """Get scripted actions based on time and game state"""
+        raise NotImplementedError
+        
+    def process_input(self, user_input: str, game_state: 'GameState') -> str:
+        """Process user input and generate response"""
+        raise NotImplementedError

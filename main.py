@@ -1,128 +1,118 @@
+from game.game_state import GameState, GamePhase
+from game.event_manager import EventManager
 from agents.joey_agent import JoeyAgent
 from agents.robert_agent import RobertAgent
-from world.game_manager import GameManager
-from config.settings import get_llm_config, get_game_settings
-import os
-from dotenv import load_dotenv
-import asyncio
 
-# Load environment variables
-load_dotenv()
-
-def display_status(game):
-    """Display current game status"""
-    print("\n" + "="*50)
-    print(f"Time: {game.current_time}")
-    print(f"Current Location: {game.player_state['location']}")
-    print(f"Time Loop Cycle: {game.cycle_count}")
-    
-    if game.player_state["knowledge"]:
-        print("\nDiscovered Information:")
-        for info in game.player_state["knowledge"]:
-            print(f"  • {info}")
-    print("="*50)
-
-def display_menu(actions):
-    """Display available actions menu"""
-    print("\nAvailable Actions:")
-    print("-"*20)
-    for i, action in enumerate(actions, 1):
-        print(f"{i}. {action}")
-    print(f"{len(actions) + 1}. Quit Game")
-    print("-"*20)
-
-async def handle_conversation(game, target, chosen_action):
-    """Handle conversation with NPCs"""
-    print(f"\nStarting conversation with {target.title()}...")
-    print("(Type 'exit' to end conversation)")
-    
-    while True:
-        message = input("\nYou: ").strip()
-        if message.lower() == 'exit':
-            print("\nEnding conversation...")
-            break
-            
-        responses = await game.process_player_action(message, target)
+class SharpSchoolGame:
+    def __init__(self):
+        self.game_state = GameState()
+        self.event_manager = EventManager(self.game_state)
+        self.joey = JoeyAgent()
+        self.robert = RobertAgent()
         
-        # Display responses
-        for agent_id, response in responses.items():
-            if agent_id == "narrative":
-                print(f"\n[Narrative] {response}")
-            else:
-                print(f"\n{agent_id.title()}: {response}")
+        self._setup_events()
+        
+    def _setup_events(self):
+        # Register key event triggers
+        self.event_manager.register_trigger("leave exam", "exit_exam")
+        self.event_manager.register_trigger("talk to joey", "meet_joey")
+        self.event_manager.register_trigger("talk to principal", "meet_robert")
+        
+    def _handle_intro(self):
+        """Handle the introduction phase of the game"""
+        print("\nYou find yourself in the exam hall. The AI proctor announces:")
+        print('"The exam has begun. Please remain silent and still."')
+        print("\nLooking down at your exam paper, you notice it's completely blank.")
+        print("At the bottom, there's a small line of text:")
+        print('"If you cannot solve it, you may exit at any time."')
+        
+        self.game_state.current_phase = GamePhase.EXAM_HALL
 
-async def main():
-    # Initialize game
-    game = GameManager()
-    
-    # Create and register agents
-    joey = JoeyAgent()
-    robert = RobertAgent()
-    
-    game.register_agent("joey", joey)
-    game.register_agent("robert", robert)
-    
-    # Introduction
-    print("\n" + "="*50)
-    print("Welcome to Sharp School".center(50))
-    print("="*50)
-    print("\nYou are a 20-year-old Labor class student...")
-    print("Your goal is to pass the exam and change your fate.")
-    print("\nPress Enter to begin...")
-    input()
-    
-    # Game loop
-    while game.game_state == "running":
-        display_status(game)
+    def _handle_exam_hall(self, user_input: str) -> str:
+        """Handle interactions in the exam hall"""
+        # Check for time-based events first
+        if self.game_state.current_time >= "09:05" and self.game_state.in_exam_hall:
+            self.game_state.in_exam_hall = False
+            print("\n*Suddenly, you hear a scream from outside*")
+            print("Through the window, you see a figure falling...")
+            self.game_state.trigger_time_loop()
+            return "Everything fades to white as time seems to reset..."
         
-        # Get and display available actions
-        actions = game.get_available_actions()
-        display_menu(actions)
+        if "look" in user_input.lower():
+            return "You notice other students' papers aren't blank like yours."
+        elif "exit" in user_input.lower() or "leave" in user_input.lower():
+            self.game_state.in_exam_hall = False
+            self.game_state.current_phase = GamePhase.HALLWAY
+            return "You decide to leave the exam hall. As you exit, you notice text on the AI proctor's screen:\n'One Labor-class student has successfully exited the exam.'"
         
-        # Get player choice
-        try:
-            choice = input("\nEnter your choice (number): ").strip()
-            
-            # Handle quit
-            if choice == str(len(actions) + 1):
-                print("\nAre you sure you want to quit? (yes/no)")
-                if input().lower().startswith('y'):
-                    game.game_state = "quit"
-                    print("\nThanks for playing!")
-                    break
+        return "The AI proctor reminds you to remain still and silent."
+
+    def _handle_hallway(self, user_input: str) -> str:
+        """Handle interactions in the hallway"""
+        if "robert" in user_input.lower() or "principal" in user_input.lower():
+            return self.robert.process_input(user_input, self.game_state)
+        elif "joey" in user_input.lower() or "figure" in user_input.lower():
+            return self.joey.process_input(user_input, self.game_state)
+        
+        # Provide contextual hints based on game state
+        if self.game_state.cycle_count == 1:
+            return "You notice Principal Robert nearby and a familiar figure in the distance."
+        return "The hallway stretches before you. What would you like to do?"
+
+    def _handle_rooftop(self, user_input: str) -> str:
+        """Handle interactions on the rooftop"""
+        response = self.joey.process_input(user_input, self.game_state)
+        
+        # Check for time loop trigger
+        if self.game_state.current_time >= "09:05":
+            print("\n*A scream echoes through the air*")
+            self.game_state.trigger_time_loop()
+            return "Everything fades to white as time seems to reset..."
+        
+        return response
+
+    def start_game(self):
+        print("\n=== Welcome to Sharp School - The Elite Plan ===")
+        print("\nYou are a 20-year-old Labor class student, hoping to change your fate...")
+        
+        while True:
+            if self.game_state.current_phase == GamePhase.INTRO:
+                self._handle_intro()
                 continue
-                
-            choice = int(choice)
-            if 1 <= choice <= len(actions):
-                chosen_action = actions[choice - 1]
-                
-                # Handle different types of actions
-                if "Talk" in chosen_action:
-                    target = "joey" if "Joey" in chosen_action or "door" in chosen_action else "robert"
-                    await handle_conversation(game, target, chosen_action)
-                    
-                else:
-                    print(f"\nExecuting: {chosen_action}")
-                    responses = await game.process_player_action(chosen_action)
-                    
-                    if responses.get("narrative"):
-                        print(f"\n[Narrative] {responses['narrative']}")
-                    
-                    # Display any ambient dialogue from NPCs
-                    for agent_id, response in responses.items():
-                        if agent_id.endswith("_ambient"):
-                            npc_name = agent_id.replace("_ambient", "").title()
-                            print(f"\n{npc_name}: {response}")
-                
-            else:
-                print("\nInvalid choice. Please select a number from the menu.")
-                
-        except ValueError:
-            print("\nInvalid input. Please enter a number.")
             
-        # Add a small pause between turns
-        print("\nPress Enter to continue...")
-        input()
+            # Show current time and provide context
+            print(f"\nTime: {self.game_state.current_time}")
+            if self.game_state.cycle_count > 1:
+                print(f"[Time Loop #{self.game_state.cycle_count}]")
+            
+            # Check for time-based events before user input
+            if self.game_state.advance_time(0):  # Check current time without advancing
+                if self.game_state.in_exam_hall:
+                    print("\n*Suddenly, you hear a scream from outside*")
+                    print("Through the window, you see a figure falling...")
+                    self.game_state.trigger_time_loop()
+                    print("Everything fades to white as time seems to reset...")
+                    continue
+            
+            user_input = input("\nWhat would you like to do? > ")
+            
+            # Process response based on current phase
+            if self.game_state.current_phase == GamePhase.EXAM_HALL:
+                response = self._handle_exam_hall(user_input)
+            elif self.game_state.current_phase == GamePhase.HALLWAY:
+                response = self._handle_hallway(user_input)
+            elif self.game_state.current_phase == GamePhase.ROOFTOP:
+                response = self._handle_rooftop(user_input)
+            
+            print(f"\n{response}")
+            
+            # Advance time based on interaction
+            if self.game_state.advance_time(1):  # Returns True if time loop should trigger
+                if not self.game_state.joey_saved:
+                    print("\n*A scream echoes through the air*")
+                    self.game_state.trigger_time_loop()
+                    print("Everything fades to white as time seems to reset...")
 
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    game = SharpSchoolGame()
+    game.start_game() 
