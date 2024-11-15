@@ -22,9 +22,13 @@ class GameState:
         }
         self.joey_saved = False
         self.in_exam_hall = True
+        self.pause_time = False
         
     def advance_time(self, minutes: int) -> bool:
         """Advance game time by specified minutes. Returns True if time loop should trigger"""
+        if self.pause_time:
+            return False
+            
         hour, minute = map(int, self.current_time.split(":"))
         total_minutes = hour * 60 + minute + minutes
         new_hour = total_minutes // 60

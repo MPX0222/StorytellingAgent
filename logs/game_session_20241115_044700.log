@@ -1,0 +1,511 @@
+2024-11-15 04:47:00 | INFO | Event - game_start: Game session started
+2024-11-15 04:47:00 | INFO | Game State Update: {
+  "time": "09:00",
+  "phase": "GamePhase.INTRO",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:47:00 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:47:00",
+  "agent_name": "Joey",
+  "location": "hallway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:47:00 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:47:00",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.0,
+    "convinced": null
+  }
+}
+2024-11-15 04:50:13 | INFO | Game State Update: {
+  "time": "09:01",
+  "phase": "GamePhase.EXAM_HALL",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:50:13 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:50:13",
+  "agent_name": "Joey",
+  "location": "hallway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:50:13 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:50:13",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.0,
+    "convinced": null
+  }
+}
+2024-11-15 04:50:26 | INFO | Event - game_response: The AI proctor reminds you to remain still and silent.
+2024-11-15 04:50:26 | INFO | Game State Update: {
+  "time": "09:02",
+  "phase": "GamePhase.EXAM_HALL",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:50:26 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:50:26",
+  "agent_name": "Joey",
+  "location": "hallway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:50:26 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:50:26",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.0,
+    "convinced": null
+  }
+}
+2024-11-15 04:50:40 | INFO | Event - game_response: You decide to leave the exam hall. As you exit, you notice text on the AI proctor's screen:
+'One Labor-class student has successfully exited the exam.'
+2024-11-15 04:50:40 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:50:40 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:50:40",
+  "agent_name": "Joey",
+  "location": "hallway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:50:40 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:50:40",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.0,
+    "convinced": null
+  }
+}
+2024-11-15 04:50:46 | INFO | Event - user_input: talk with robert
+2024-11-15 04:50:49 | INFO | Event - game_response: 
+[Entering dialogue with Robert]
+*Robert straightens his posture, putting on a polite smile as he prepares to greet the person approaching him.
+2024-11-15 04:50:49 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:50:49 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:50:49",
+  "agent_name": "Joey",
+  "location": "hallway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:50:49 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:50:49",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.0,
+    "convinced": null
+  }
+}
+2024-11-15 04:51:03 | INFO | Event - user_input: what happen to joey
+2024-11-15 04:51:08 | INFO | Dialogue: player | what happen to joey
+2024-11-15 04:51:08 | INFO | Event - game_response: ('*Robert smirks smugly and responds, "Joey simply wasn\'t qualified to join the Elite class. It\'s the natural order of things."', False)
+2024-11-15 04:51:08 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:51:08 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:51:08",
+  "agent_name": "Joey",
+  "location": "hallway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:51:08 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:51:08",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}
+2024-11-15 04:53:51 | INFO | Event - user_input: do you do something bad for her?
+2024-11-15 04:53:55 | INFO | Dialogue: player | do you do something bad for her?
+2024-11-15 04:53:55 | INFO | Event - game_response: ("*Robert smirks knowingly, his eyes glinting with satisfaction at the thought of maintaining the Elite class's power.", False)
+2024-11-15 04:53:55 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:53:55 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:53:55",
+  "agent_name": "Joey",
+  "location": "hallway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:53:55 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:53:55",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}
+2024-11-15 04:54:19 | INFO | Event - user_input: exit
+2024-11-15 04:54:20 | INFO | Event - game_response: *Robert nods patronizingly, flashing a fake smile, before turning away to attend to other matters.
+[Exiting dialogue with Robert]
+2024-11-15 04:54:20 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:54:20 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:54:20",
+  "agent_name": "Joey",
+  "location": "hallway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:54:20 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:54:20",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}
+2024-11-15 04:54:25 | INFO | Event - user_input: find joey
+2024-11-15 04:54:26 | INFO | Event - game_response: *Ignoring the question, Joey takes a step closer to the edge, gazing down at the ground below, consumed by despair.*
+2024-11-15 04:54:26 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:54:26 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:54:26",
+  "agent_name": "Joey",
+  "location": "stairway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:54:26 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:54:26",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}
+2024-11-15 04:54:46 | INFO | Event - user_input: catch joey and talk to joey
+2024-11-15 04:54:48 | INFO | Event - game_response: 
+[Entering dialogue with Joey]
+*Joey looks up with teary eyes, trying to force a weak smile*
+2024-11-15 04:54:48 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:54:48 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:54:48",
+  "agent_name": "Joey",
+  "location": "stairway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:54:48 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:54:48",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}
+2024-11-15 04:55:03 | INFO | Event - user_input: hey joey, it seems that your are so wired
+2024-11-15 04:55:05 | INFO | Dialogue: player | hey joey, it seems that your are so wired
+2024-11-15 04:55:05 | INFO | Event - game_response: ('*In a daze, Joey slowly turns towards the voice, her eyes filled with tears and despair.', False)
+2024-11-15 04:55:05 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:55:05 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:55:05",
+  "agent_name": "Joey",
+  "location": "stairway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:55:05 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:55:05",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}
+2024-11-15 04:55:57 | INFO | Event - user_input: oh dear, is it something bad for you? don't worry, I'm here
+2024-11-15 04:55:58 | INFO | Dialogue: player | oh dear, is it something bad for you? don't worry, I'm here
+2024-11-15 04:55:58 | INFO | Event - game_response: ('*\n\nJoey takes a deep breath, closes her eyes, and steps back from the edge of the rooftop, her hands trembling with conflicting emotions.', False)
+2024-11-15 04:55:58 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:55:58 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:55:58",
+  "agent_name": "Joey",
+  "location": "stairway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:55:58 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:55:58",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}
+2024-11-15 04:56:32 | INFO | Event - user_input: could you tell me what happened. I can help you
+2024-11-15 04:56:34 | INFO | Dialogue: player | could you tell me what happened. I can help you
+2024-11-15 04:56:34 | INFO | Event - game_response: ('*Joey freezes in place, hesitating for a moment before turning to look at the person with tears in her eyes.*', False)
+2024-11-15 04:56:34 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:56:34 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:56:34",
+  "agent_name": "Joey",
+  "location": "stairway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:56:34 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:56:34",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}
+2024-11-15 04:57:17 | INFO | Event - user_input: exit
+2024-11-15 04:57:18 | INFO | Event - game_response: *Without saying a word, Joey quietly turns away and starts walking down the stairs, lost in her despair and contemplating her next steps.
+[Exiting dialogue with Joey]
+2024-11-15 04:57:18 | INFO | Game State Update: {
+  "time": "09:03",
+  "phase": "GamePhase.HALLWAY",
+  "cycle": 1,
+  "discovered_clues": [],
+  "player_knowledge": {
+    "knows_time_loop": false,
+    "knows_joey_identity": false,
+    "knows_school_secret": false
+  },
+  "joey_saved": false
+}
+2024-11-15 04:57:18 | INFO | Agent State Update - Joey: {
+  "timestamp": "2024-11-15 04:57:18",
+  "agent_name": "Joey",
+  "location": "stairway",
+  "current_state": "despairing",
+  "additional_states": {
+    "trust_level": 0.2,
+    "suspicion_level": null,
+    "convinced": false
+  }
+}
+2024-11-15 04:57:18 | INFO | Agent State Update - Robert: {
+  "timestamp": "2024-11-15 04:57:18",
+  "agent_name": "Robert",
+  "location": "hallway",
+  "current_state": "observing",
+  "additional_states": {
+    "trust_level": null,
+    "suspicion_level": 0.2,
+    "convinced": null
+  }
+}

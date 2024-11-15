@@ -21,19 +21,31 @@ class LLMAgent(BaseAgent):
         )
         self.use_llm = True
         
+    def _get_state_prompts(self) -> Dict[str, str]:
+        """Get state-specific prompts"""
+        return {
+            "idle": "You are standing quietly, observing the situation.",
+            "observing": "You are carefully watching what's happening.",
+            "suspicious": "You are wary and suspicious of the current situation.",
+            "revealing": "You are beginning to reveal important information.",
+            "despairing": "You are feeling hopeless and desperate.",
+            "considering": "You are carefully considering what you've heard.",
+            "hopeful": "You are beginning to feel a glimmer of hope.",
+            "distracted": "You are distracted by other thoughts or events."
+        }
+        
     def _generate_llm_response(self, 
                              user_input: str, 
                              context: Dict,
                              state_prompts: Dict[str, str],
                              additional_context: str = "") -> str:
-        """Unified LLM response generation"""
-        if not self.use_llm:
-            return self._get_fallback_response()
-            
+        """Generate response using LLM"""
+        state_prompt = state_prompts.get(self.current_state, "You are in a neutral state.")
+        
         base_prompt = f"""{self.character_prompt}
 
 Current location: {self.location}
-Current state: {state_prompts[self.current_state]}
+Current state: {state_prompt}
 Time: {context['game_state'].current_time}
 {additional_context}
 
