@@ -1,5 +1,5 @@
 from .llm_agent import LLMAgent
-from typing import Dict, Optional
+from typing import Dict, Optional, Tuple
 
 class RobertAgent(LLMAgent):
     def __init__(self):
@@ -82,11 +82,22 @@ Current situation: It's September 1st, E24, during the preliminary screening exa
             "distracted": "Your attention is divided."
         }
 
-    def process_input(self, user_input: str, game_state: 'GameState') -> str:
+    def process_input(self, user_input: str, game_state: 'GameState') -> Tuple[str, bool]:
+        """Process user input and return (response, is_dialogue)"""
+        # Check if this is a dialogue intent
+        is_dialogue = self.check_dialogue_intent(user_input)
+        print(f"Is dialogue: {is_dialogue}")
+        
+        # First check for scripted actions
         scripted_action = self._get_scripted_action(game_state)
         if scripted_action:
-            return scripted_action
+            return (scripted_action, is_dialogue)
 
+        # If it's a dialogue intent, let the dialogue system handle it
+        if is_dialogue:
+            return ("", True)
+
+        # Regular interaction processing
         if any(word in user_input.lower() for word in ["joey", "labor class", "rigged", "unfair"]):
             self.suspicion_level += 0.2
             
@@ -95,32 +106,15 @@ Current situation: It's September 1st, E24, during the preliminary screening exa
         if len(self.revealed_info) > 2:
             self.current_state = "revealing"
 
-        info_triggers = {
-            "joey": "joey_identity",
-            "exam": "rigged_exams",
-            "labor": "class_discrimination",
-            "elite": "elite_dominance"
-        }
-        
-        for trigger, info in info_triggers.items():
-            if trigger in user_input.lower():
-                self.revealed_info.add(info)
-                if info == "joey_identity":
-                    game_state.player_knowledge["knows_joey_identity"] = True
-
-        situation_context = self._get_situation_context(game_state)
-
+        # Generate response using LLM
         response = self._generate_llm_response(
             user_input=user_input,
             context={"game_state": game_state},
             state_prompts=self._get_state_prompts(),
-            additional_context=situation_context
+            additional_context=self._get_situation_context(game_state)
         )
 
-        if len(self.revealed_info) >= 3:
-            game_state.player_knowledge["knows_school_secret"] = True
-
-        return response
+        return (response, False)
 
     def _get_situation_context(self, game_state: 'GameState') -> str:
         """Get context based on current situation"""
