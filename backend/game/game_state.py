@@ -1,6 +1,7 @@
 from typing import Dict, Optional, List
 from enum import Enum
 import time
+from game.dialogue_system import DialogueSystem
 
 class GamePhase(Enum):
     INTRO = "intro"
@@ -10,7 +11,8 @@ class GamePhase(Enum):
     ENDING = "ending"
 
 class GameState:
-    def __init__(self):
+    def __init__(self, game_instance=None):
+        self.game_instance = game_instance  # 存储对游戏实例的引用
         self.current_time = "09:00"
         self.current_phase = GamePhase.INTRO
         self.cycle_count = 1
@@ -47,28 +49,18 @@ class GameState:
         if self.in_dialogue:
             return ["end_conversation"]
             
-        actions = ["check_time", "check_location"]
+        # 基础动作总是可用
+        actions = ["check_time", "check_location", "look_around"]
         
-        # 基于当前位置和状态提供动作
-        if self.current_location == "exam_hall":
-            if self.in_exam_hall:
-                actions.extend(["exit", "look_around"])
-            if not self.in_exam_hall:  # 如果已经退出考场
-                actions.extend(["go_to_hallway", "talk_to_robert"])
-            
-        elif self.current_location == "hallway":
-            actions.extend([
-                "go_to_exam_hall",
-                "go_to_rooftop",
-                "talk_to_joey"
-            ])
-            
-        elif self.current_location == "rooftop":
-            actions.extend([
-                "go_to_hallway",
-                "look_around",
-                "check_surroundings"
-            ])
+        # 基于当前位置添加特定动作
+        location_actions = {
+            "exam_hall": ["exit"] if self.in_exam_hall else ["go_to_hallway", "talk_to_robert"],
+            "hallway": ["go_to_exam_hall", "go_to_rooftop", "talk_to_joey"],
+            "rooftop": ["go_to_hallway", "check_surroundings"]
+        }
+        
+        if self.current_location in location_actions:
+            actions.extend(location_actions[self.current_location])
             
         # 添加调试信息
         print(f"Available actions: {actions}")
@@ -77,11 +69,16 @@ class GameState:
         return actions
         
     def process_action(self, action: str, parameters: Dict[str, str] = None) -> bool:
-        """处理玩家动作"""
-        if action not in self.get_available_actions():
-            return False
-            
+        """处理玩家动作，包括自由输入的动作"""
         # 处理基础动作
+        if action in self.get_available_actions():
+            return self._handle_basic_action(action)
+            
+        # 处理自由输入的动作
+        return self._handle_free_action(action)
+        
+    def _handle_basic_action(self, action: str) -> bool:
+        """处理预定义的基础动作"""
         if action == "check_time":
             self.messages.append(f"Time: {self.current_time}")
             return True
@@ -90,13 +87,11 @@ class GameState:
             self.messages.append(f"You are in the {self.current_location}")
             return True
             
-        # 处理移动
         elif action.startswith("go_to_"):
             new_location = action.replace("go_to_", "")
             self._handle_movement(new_location)
             return True
             
-        # 处理特殊动作
         elif action == "exit" and self.in_exam_hall:
             self._handle_exam_exit()
             return True
@@ -105,7 +100,63 @@ class GameState:
             self._handle_look_around()
             return True
             
-        return True
+        return False
+        
+    def _handle_free_action(self, action: str) -> bool:
+        """处理玩家自由输入的动作"""
+        action = action.lower()
+        
+        # 移动相关动作
+        movement_words = ["go", "walk", "move", "head", "enter"]
+        if any(word in action for word in movement_words):
+            locations = {
+                "exam hall": "exam_hall",
+                "hallway": "hallway",
+                "rooftop": "rooftop"
+            }
+            for loc_name, loc_id in locations.items():
+                if loc_name in action:
+                    if self._can_move_to(loc_id):
+                        self._handle_movement(loc_id)
+                        return True
+                    else:
+                        self.messages.append(f"You cannot go to the {loc_name} from here.")
+                        return False
+                        
+        # 对话相关动作
+        conversation_words = ["talk", "speak", "chat", "ask"]
+        if any(word in action for word in conversation_words):
+            npcs = {
+                "robert": "exam_hall",
+                "joey": "hallway"
+            }
+            for npc, location in npcs.items():
+                if npc in action:
+                    if self.current_location == location:
+                        # 对话逻辑由game_controller处理
+                        return True
+                    else:
+                        self.messages.append(f"{npc.capitalize()} is not here.")
+                        return False
+                        
+        # 观察相关动作
+        observation_words = ["look", "examine", "check", "observe"]
+        if any(word in action for word in observation_words):
+            self._handle_look_around()
+            return True
+            
+        # 如果无法理解玩家的动作
+        self.messages.append("I'm not sure how to do that.")
+        return False
+        
+    def _can_move_to(self, location: str) -> bool:
+        """检查是否可以移动到指定位置"""
+        valid_moves = {
+            "exam_hall": ["hallway"],
+            "hallway": ["exam_hall", "rooftop"],
+            "rooftop": ["hallway"]
+        }
+        return location in valid_moves.get(self.current_location, [])
         
     def _handle_movement(self, new_location: str):
         """处理移动逻辑"""
@@ -127,7 +178,12 @@ class GameState:
         self.messages.append("As you exit, you notice text on the AI proctor's screen:")
         self.messages.append("'One Labor-class student has successfully exited the exam.'")
         self.in_exam_hall = False
-        self.current_location = "hallway"  # 自动移动到走廊
+        self.current_location = "hallway"
+        
+        # 更新Robert的位置
+        if self.game_instance and 'robert' in self.game_instance['agents']:
+            self.game_instance['agents']['robert'].location = "exam_hall"
+            
         self.messages.append("You are now in the hallway.")
         if self.cycle_count == 1:
             self.messages.append("You notice Joey standing alone in the hallway, looking troubled.")

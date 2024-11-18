@@ -52,30 +52,31 @@ async def process_dialogue(action: DialogueAction):
             trust_level=trust_level
         )
         
-        # 处理LLM的回复
-        if llm_response:
-            # 分离动作和对话
-            parts = llm_response.split("\n")
-            for part in parts:
-                part = part.strip()
-                if not part:
-                    continue
-                    
-                if part.startswith("*") and part.endswith("*"):
-                    # 动作描述
-                    action_text = part[1:-1].strip()
-                    game_instance['state'].messages.append(GameMessage(
-                        text=action_text,
-                        type="action",
-                        speaker=speaker.name
-                    ))
-                else:
-                    # 对话内容
-                    game_instance['state'].messages.append(GameMessage(
-                        text=part,
-                        type="agent",
-                        speaker=speaker.name
-                    ))
+        # 分离动作和对话
+        parts = llm_response.split("\n")
+        for part in parts:
+            part = part.strip()
+            if not part:
+                continue
+                
+            if part.startswith("*") and part.endswith("*"):
+                # 动作描述（移除星号）
+                action_text = part[1:-1].strip()
+                game_instance['state'].messages.append(GameMessage(
+                    text=action_text,
+                    type="action",
+                    speaker=speaker.name
+                ))
+            else:
+                # 对话内容
+                game_instance['state'].messages.append(GameMessage(
+                    text=part,
+                    type="agent",
+                    speaker=speaker.name
+                ))
+        
+        # 更新对话选项
+        game_instance['dialogue_system'].available_responses = speaker.get_dialogue_options()
         
         return {
             "success": True,
@@ -113,6 +114,7 @@ async def end_dialogue():
         game_instance['state'].in_dialogue = False
         game_instance['dialogue_system'].current_state = DialogueState.INACTIVE
         game_instance['dialogue_system'].current_speaker = None
+        game_instance['dialogue_system'].available_responses = []
         
         # 记录日志
         game_instance['logger'].log("Dialogue ended")

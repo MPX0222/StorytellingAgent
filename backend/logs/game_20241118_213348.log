@@ -1,0 +1,12 @@
+2024-11-18 21:43:29,513 - INFO - {'text': "I... I don't know if I should say anything. It's all so confusing.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
+2024-11-18 21:43:29,513 - INFO - {'text': "I... I don't know if I should say anything. It's all so confusing.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
+2024-11-18 21:43:35,713 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: how are you
+2024-11-18 21:43:35,713 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: how are you
+2024-11-18 21:43:38,807 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *sighs deeply, rubbing the back of his neck*
+I... I'm not really sure how to answer that. Things have been... strange lately.
+2024-11-18 21:43:38,807 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *sighs deeply, rubbing the back of his neck*
+I... I'm not really sure how to answer that. Things have been... strange lately.

@@ -1,6 +1,6 @@
 <template>
   <div class="character-panel">
-    <el-card>
+    <!-- <el-card>
       <template #header>
         <div class="card-header">
           <h3>Characters</h3>
@@ -10,7 +10,7 @@
         <el-button @click="showCharacterInfo('joey')" type="info" plain>Joey</el-button>
         <el-button @click="showCharacterInfo('robert')" type="info" plain>Robert</el-button>
       </div>
-    </el-card>
+    </el-card> -->
 
     <el-dialog
       v-model="dialogVisible"

@@ -42,7 +42,7 @@ game_instance = {
 }
 
 def parse_user_input(input_text: str, available_actions: List[str]) -> str:
-    """解析用户输入，匹配到最合适的动作"""
+    """解析用户输入，匹配到合适的动作"""
     input_text = input_text.lower().strip()
     
     # 1. 精确匹配
@@ -54,7 +54,7 @@ def parse_user_input(input_text: str, available_actions: List[str]) -> str:
     if any(word in input_text for word in movement_words):
         locations = ["hallway", "exam_hall", "rooftop"]
         for loc in locations:
-            if loc in input_text:
+            if loc.replace("_", " ") in input_text:
                 action = f"go_to_{loc}"
                 if action in available_actions:
                     return action
@@ -64,10 +64,17 @@ def parse_user_input(input_text: str, available_actions: List[str]) -> str:
     if any(word in input_text for word in conversation_words):
         npcs = ["robert", "joey"]
         for npc in npcs:
-            if npc in input_text:
-                action = f"talk_to_{npc}"
+            if npc.lower() in input_text.lower():
+                action = f"talk_to_{npc.lower()}"
+                # 检查动作是否在当前位置可用
                 if action in available_actions:
                     return action
+                else:
+                    # 如果动作不可用，返回一个错误提示
+                    raise HTTPException(
+                        status_code=400, 
+                        detail=f"Cannot talk to {npc} in current location. Available actions: {available_actions}"
+                    )
                     
     # 4. 查看/检查相关命令
     if any(word in input_text for word in ["look", "check", "examine", "inspect"]):
@@ -80,10 +87,14 @@ def parse_user_input(input_text: str, available_actions: List[str]) -> str:
             
     # 5. 特殊命令
     if "exit" in input_text or "leave" in input_text:
-        return "exit"
-        
-    # 如果没有匹配到任何动作，返回原始输入
-    return input_text
+        if "exit" in available_actions:
+            return "exit"
+            
+    # 如果没有匹配到任何有效动作，返回错误
+    raise HTTPException(
+        status_code=400, 
+        detail=f"Invalid action: {input_text}. Available actions: {available_actions}"
+    )
 
 @router.post("/start")
 async def start_game():
@@ -125,25 +136,25 @@ async def process_action(action: GameAction):
         # 处理对话
         npc_name = parsed_action.replace("talk_to_", "")
         if npc_name in game_instance['agents']:
+            # 检查NPC是否在当前位置
+            agent = game_instance['agents'][npc_name]
+            if agent.location != game_state.current_location:
+                raise HTTPException(
+                    status_code=400, 
+                    detail=f"{agent.name} is not in the {game_state.current_location}"
+                )
+                
             game_state.in_dialogue = True
-            response = game_instance['dialogue_system'].start_dialogue(
-                game_instance['agents'][npc_name]
-            )
+            response = game_instance['dialogue_system'].start_dialogue(agent)
             game_state.messages.append(response)
-            game_instance['logger'].log(str(response))
+            game_instance['logger'].log(f"Started dialogue with {agent.name}")
         else:
             raise HTTPException(status_code=400, detail=f"Unknown NPC: {npc_name}")
     else:
         # 处理其他动作
         success = game_state.process_action(parsed_action, action.parameters)
         if not success:
-            # 如果动作处理失败，尝试作为对话内容处理
-            if game_state.in_dialogue:
-                response = game_instance['dialogue_system'].process_dialogue(action.action)
-                game_state.messages.append(response)
-                game_instance['logger'].log(str(response))
-            else:
-                raise HTTPException(status_code=400, detail="Invalid action")
+            raise HTTPException(status_code=400, detail="Invalid action")
     
     # 处理事件
     game_instance['event_manager'].process_events(game_state)

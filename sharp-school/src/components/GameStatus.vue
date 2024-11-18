@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="game-status">
     <el-card>
       <template #header>
@@ -12,7 +12,7 @@
       </div>
     </el-card>
   </div>
-</template>
+</template> -->
 
 <script setup lang="ts">
 import { useGameStore } from '../stores/game'
