@@ -1,0 +1,14 @@
+2024-11-18 21:48:07,023 - INFO - {'text': "I... I don't know if I should say anything. It's all so confusing.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
+2024-11-18 21:48:07,023 - INFO - {'text': "I... I don't know if I should say anything. It's all so confusing.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
+2024-11-18 21:48:10,501 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi
+2024-11-18 21:48:10,501 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi
+2024-11-18 21:48:12,401 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, a hint of hesitation in the movement*
+Hi...
+2024-11-18 21:48:12,401 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, a hint of hesitation in the movement*
+Hi...
+2024-11-18 21:52:02,992 - INFO - {'text': "I... I don't know if I should be talking about this. It's complicated.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
+2024-11-18 21:52:02,992 - INFO - {'text': "I... I don't know if I should be talking about this. It's complicated.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
