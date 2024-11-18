@@ -1,0 +1,6 @@
+2024-11-18 21:06:54,981 - INFO - {'text': "I... I don't know if I should say anything. It's all so confusing.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
+2024-11-18 21:06:57,599 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi
+2024-11-18 21:06:59,751 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, fidgeting with the hem of his shirt*
+Hi... I'm Joey.

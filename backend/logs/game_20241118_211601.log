@@ -1,0 +1,14 @@
+2024-11-18 21:16:07,634 - INFO - {'text': "I... I don't know if I should be talking about this. It's... complicated.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
+2024-11-18 21:16:07,634 - INFO - {'text': "I... I don't know if I should be talking about this. It's... complicated.", 'type': 'agent', 'speaker': 'Joey', 'available_responses': ['Ask about school', 'Ask about time', 'End conversation']}
+2024-11-18 21:16:09,869 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi
+2024-11-18 21:16:09,869 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi
+2024-11-18 21:16:12,140 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, fidgeting with the strap of his backpack*
+
+Hi...
+2024-11-18 21:16:12,140 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, fidgeting with the strap of his backpack*
+
+Hi...
