@@ -1,0 +1,28 @@
+2024-11-20 15:53:54,913 - INFO - Started dialogue with Joey
+2024-11-20 15:53:54,913 - INFO - Started dialogue with Joey
+2024-11-20 15:54:02,259 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi, how are you
+2024-11-20 15:54:02,259 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi, how are you
+2024-11-20 15:54:05,571 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, a hint of desperation in his eyes*
+I... I'm not really sure how to answer that. Things have been... strange lately.
+2024-11-20 15:54:05,571 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, a hint of desperation in his eyes*
+I... I'm not really sure how to answer that. Things have been... strange lately.
+2024-11-20 15:54:12,481 - INFO - Dialogue ended
+2024-11-20 15:54:12,481 - INFO - Dialogue ended
+2024-11-20 15:54:30,852 - INFO - Started dialogue with Robert
+2024-11-20 15:54:30,852 - INFO - Started dialogue with Robert
+2024-11-20 15:54:41,365 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: what are you doing
+2024-11-20 15:54:41,365 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: what are you doing
+2024-11-20 15:54:45,913 - INFO - DIALOGUE - Speaker: Robert | Type: agent
+Message: *narrows eyes slightly, maintaining a watchful gaze*
+
+"As the principal, it is my duty to ensure the integrity and security of this examination process. My presence here is to uphold the high standards of Sharp School and to guarantee that all students adhere to the rules. Any further questions regarding my duties should be directed to the appropriate channels."
+2024-11-20 15:54:45,913 - INFO - DIALOGUE - Speaker: Robert | Type: agent
+Message: *narrows eyes slightly, maintaining a watchful gaze*
+
+"As the principal, it is my duty to ensure the integrity and security of this examination process. My presence here is to uphold the high standards of Sharp School and to guarantee that all students adhere to the rules. Any further questions regarding my duties should be directed to the appropriate channels."

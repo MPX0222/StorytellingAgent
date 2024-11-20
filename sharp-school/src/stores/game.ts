@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { ElMessageBox } from 'element-plus'
 
 interface GameState {
   currentTime: string
@@ -13,6 +14,11 @@ interface GameState {
     type: string
   }>
   loading: boolean
+  playerLocation: string
+  agents: Array<{
+    name: string
+    location: string
+  }>
 }
 
 export const useGameStore = defineStore('game', {
@@ -25,7 +31,12 @@ export const useGameStore = defineStore('game', {
       inDialogue: false,
       availableActions: [],
       messages: [],
-      loading: false
+      loading: false,
+      playerLocation: 'exam_hall',
+      agents: [
+        { name: 'Joey', location: 'corridor' },
+        { name: 'Robert', location: 'corridor' }
+      ]
     }
   }),
 
@@ -68,10 +79,18 @@ export const useGameStore = defineStore('game', {
         } 
         // 处理游戏动作
         else {
+          const action = this.parseAction(input)
           const response = await axios.post('http://localhost:8000/api/game/action', {
-            action: this.parseAction(input),
+            action: action,
             parameters: {}
           })
+          
+          // 立即更新位置（不等待服务器响应）
+          if (action.startsWith('go_to_')) {
+            const location = action.replace('go_to_', '').replace('_', '')
+            this.updatePlayerLocation(location)
+          }
+          
           this.updateGameState(response.data)
         }
       } catch (error) {
@@ -85,15 +104,51 @@ export const useGameStore = defineStore('game', {
       }
     },
 
+    // 新增：直接更新玩家位置
+    updatePlayerLocation(location: string) {
+      this.gameState.playerLocation = location
+      this.gameState.location = location // 同时更新游戏状态的位置
+    },
+
     updateGameState(newState: any) {
-      this.gameState.currentTime = newState.current_time
-      this.gameState.location = newState.location
-      this.gameState.phase = newState.phase
-      this.gameState.cycleCount = newState.cycle_count
-      this.gameState.inDialogue = newState.in_dialogue
-      this.gameState.availableActions = newState.available_actions
+      // 更新时间
+      this.gameState.currentTime = newState.current_time || this.gameState.currentTime
       
-      // 只添加新消息
+      // 检查是否需要重置时间循环
+      const [hours, minutes] = this.gameState.currentTime.split(':').map(Number)
+      if (hours >= 9 && minutes >= 5) {
+        this.resetGameState()
+        return
+      }
+
+      // 其他状态更新保持不变...
+      this.gameState.phase = newState.phase || this.gameState.phase
+      this.gameState.cycleCount = newState.cycle_count || this.gameState.cycleCount
+      this.gameState.inDialogue = newState.in_dialogue || false
+      
+      // 更新位置信息
+      if (newState.player_location) {
+        this.gameState.playerLocation = newState.player_location
+      }
+      if (newState.location) {
+        this.gameState.location = newState.location
+        this.gameState.playerLocation = newState.location // 确保两个位置同步
+      }
+      
+      // 更新NPC位置
+      if (newState.agents) {
+        this.gameState.agents = newState.agents.map((agent: any) => ({
+          name: agent.name,
+          location: agent.location
+        }))
+      }
+      
+      // 更新可用动作
+      if (newState.available_actions) {
+        this.gameState.availableActions = newState.available_actions
+      }
+      
+      // 更新消息
       if (newState.messages && Array.isArray(newState.messages)) {
         const currentMessages = this.gameState.messages.map(m => m.text)
         newState.messages.forEach((msg: any) => {
@@ -105,35 +160,50 @@ export const useGameStore = defineStore('game', {
     },
 
     parseAction(input: string): string {
-      // 将用户输入转换为游戏动作
       input = input.toLowerCase().trim()
       
+      // 处理移动命令
+      if (input.startsWith('go to ')) {
+        const location = input.replace('go to ', '')
+        return `go_to_${location.replace(' ', '_')}`
+      }
+
+      // 处理对话命令
+      if (input.startsWith('talk to ')) {
+        const npc = input.replace('talk to ', '')
+        return `talk_to_${npc.replace(' ', '_')}`
+      }
+
       // 直接匹配可用动作
       const exactMatch = this.gameState.availableActions.find(
         action => action.toLowerCase() === input
       )
       if (exactMatch) return exactMatch
 
-      // 处理移动命令
-      if (input.startsWith('go to ')) {
-        const location = input.replace('go to ', '')
-        const moveAction = `go_to_${location.replace(' ', '_')}`
-        if (this.gameState.availableActions.includes(moveAction)) {
-          return moveAction
-        }
-      }
-
-      // 处理对话命令
-      if (input.startsWith('talk to ')) {
-        const npc = input.replace('talk to ', '')
-        const talkAction = `talk_to_${npc.replace(' ', '_')}`
-        if (this.gameState.availableActions.includes(talkAction)) {
-          return talkAction
-        }
-      }
-
       // 默认返回原始输入
       return input
+    },
+
+    // 添加重置状态的方法
+    resetGameState() {
+      this.gameState.currentTime = '09:00'
+      this.gameState.playerLocation = 'exam_hall'
+      this.gameState.location = 'exam_hall'
+      this.gameState.agents = [
+        { name: 'Joey', location: 'corridor' },
+        { name: 'Robert', location: 'corridor' }
+      ]
+      this.gameState.cycleCount += 1
+      this.gameState.inDialogue = false
+      
+      // 清空之前的消息，只保留新循环开始的提示
+      this.gameState.messages = [{
+        text: `Time Loop ${this.gameState.cycleCount} Started`,
+        type: 'system'
+      }]
+      
+      // 重新获取游戏状态
+      this.fetchGameState()
     }
   }
 }) 

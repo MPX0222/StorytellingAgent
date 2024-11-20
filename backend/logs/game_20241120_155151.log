@@ -1,0 +1,12 @@
+2024-11-20 15:52:00,178 - INFO - Started dialogue with Joey
+2024-11-20 15:52:00,178 - INFO - Started dialogue with Joey
+2024-11-20 15:52:12,106 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi
+2024-11-20 15:52:12,106 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi
+2024-11-20 15:52:14,681 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances briefly at you, then quickly looks away, fidgeting with the strap of his backpack*
+Uh, hi...
+2024-11-20 15:52:14,681 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances briefly at you, then quickly looks away, fidgeting with the strap of his backpack*
+Uh, hi...
