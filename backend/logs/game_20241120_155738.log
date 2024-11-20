@@ -1,0 +1,184 @@
+2024-11-20 15:58:15,949 - INFO - Started dialogue with Joey
+2024-11-20 15:58:15,949 - INFO - Started dialogue with Joey
+2024-11-20 15:58:24,359 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: are you fine?
+2024-11-20 15:58:24,359 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: are you fine?
+2024-11-20 15:58:27,905 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, a hint of desperation in his eyes*
+
+I... I don't know. Things have been really strange lately. I just... I don't know what to do.
+2024-11-20 15:58:27,905 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, a hint of desperation in his eyes*
+
+I... I don't know. Things have been really strange lately. I just... I don't know what to do.
+2024-11-20 15:58:31,669 - INFO - Dialogue ended
+2024-11-20 15:58:31,669 - INFO - Dialogue ended
+2024-11-20 15:58:47,368 - INFO - Started dialogue with Joey
+2024-11-20 15:58:47,368 - INFO - Started dialogue with Joey
+2024-11-20 15:58:59,257 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: what???
+2024-11-20 15:58:59,257 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: what???
+2024-11-20 15:59:06,271 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *looks around nervously, then steps closer to you, lowering his voice*
+
+I know it sounds crazy, but... every morning, I wake up at exactly 6:00 AM. The same day, the same routine. I've tried everything to break free, but nothing works. It's like I'm stuck in this endless loop, and I don't know why.
+
+*pauses, searching your face for any sign of understanding*
+
+Do you... do you believe me?
+2024-11-20 15:59:06,271 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *looks around nervously, then steps closer to you, lowering his voice*
+
+I know it sounds crazy, but... every morning, I wake up at exactly 6:00 AM. The same day, the same routine. I've tried everything to break free, but nothing works. It's like I'm stuck in this endless loop, and I don't know why.
+
+*pauses, searching your face for any sign of understanding*
+
+Do you... do you believe me?
+2024-11-20 15:59:25,947 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: of course! I am your best friend!
+2024-11-20 15:59:25,947 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: of course! I am your best friend!
+2024-11-20 15:59:34,774 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *eyes widen slightly in surprise, then soften with a glimmer of hope*
+
+You... you believe me? After everything I've been through, it's hard to trust anyone. But if you really are my best friend, maybe... maybe there's a chance we can figure this out together.
+
+*takes a deep breath, feeling a bit more at ease*
+
+I don't know what's causing this loop, but I have a feeling it has something to do with the exams. The pressure, the stress... it's all too much. Maybe if we can find a way to understand what's happening, we can break free from this nightmare.
+2024-11-20 15:59:34,774 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *eyes widen slightly in surprise, then soften with a glimmer of hope*
+
+You... you believe me? After everything I've been through, it's hard to trust anyone. But if you really are my best friend, maybe... maybe there's a chance we can figure this out together.
+
+*takes a deep breath, feeling a bit more at ease*
+
+I don't know what's causing this loop, but I have a feeling it has something to do with the exams. The pressure, the stress... it's all too much. Maybe if we can find a way to understand what's happening, we can break free from this nightmare.
+2024-11-20 16:00:24,195 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: god! It seems that we are under a great trouble
+2024-11-20 16:00:24,195 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: god! It seems that we are under a great trouble
+2024-11-20 16:00:26,702 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *nervously shifts weight from foot to foot, avoiding eye contact*
+
+I... I'm not sure I should talk about that...
+2024-11-20 16:00:26,702 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *nervously shifts weight from foot to foot, avoiding eye contact*
+
+I... I'm not sure I should talk about that...
+2024-11-20 16:00:53,261 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: you can talk about it! just talk to me
+2024-11-20 16:00:53,261 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: you can talk about it! just talk to me
+2024-11-20 16:00:56,582 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances around cautiously before speaking in a hushed voice*
+
+There's something strange going on with the exams, but I can't say more here.
+2024-11-20 16:00:56,582 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances around cautiously before speaking in a hushed voice*
+
+There's something strange going on with the exams, but I can't say more here.
+2024-11-20 16:01:14,617 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: could we discuss at another place?
+2024-11-20 16:01:14,617 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: could we discuss at another place?
+2024-11-20 16:01:17,482 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *nods slowly, still looking hesitant*
+
+Maybe... maybe that's a good idea. Somewhere quiet, where we won't be overheard.
+2024-11-20 16:01:17,482 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *nods slowly, still looking hesitant*
+
+Maybe... maybe that's a good idea. Somewhere quiet, where we won't be overheard.
+2024-11-20 16:02:01,524 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: we can go to a classroom where there is no others
+2024-11-20 16:02:01,524 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: we can go to a classroom where there is no others
+2024-11-20 16:02:04,779 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances around cautiously, then nods slightly*
+
+Alright... let's go. But I'm not making any promises about what I'll say.
+2024-11-20 16:02:04,779 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances around cautiously, then nods slightly*
+
+Alright... let's go. But I'm not making any promises about what I'll say.
+2024-11-20 16:02:30,130 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: that's ok, i am always here
+2024-11-20 16:02:30,130 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: that's ok, i am always here
+2024-11-20 16:02:32,648 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *sighs softly, looking a bit more relaxed*
+
+Thanks... I appreciate that. Maybe... maybe we can figure something out together.
+2024-11-20 16:02:32,648 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *sighs softly, looking a bit more relaxed*
+
+Thanks... I appreciate that. Maybe... maybe we can figure something out together.
+2024-11-20 16:02:45,001 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: of course
+2024-11-20 16:02:45,001 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: of course
+2024-11-20 16:02:47,642 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *smiles faintly, though it doesn't reach your eyes*
+
+I hope so. I really do.
+2024-11-20 16:02:47,642 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *smiles faintly, though it doesn't reach your eyes*
+
+I hope so. I really do.
+2024-11-20 16:03:00,525 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: let's go
+2024-11-20 16:03:00,525 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: let's go
+2024-11-20 16:03:03,377 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *nods slightly, still looking hesitant*
+
+Alright... let's go. But I'm not making any promises about what I'll say.
+2024-11-20 16:03:03,377 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *nods slightly, still looking hesitant*
+
+Alright... let's go. But I'm not making any promises about what I'll say.
+2024-11-20 16:03:08,049 - INFO - Dialogue ended
+2024-11-20 16:03:08,049 - INFO - Dialogue ended
+2024-11-20 16:03:21,482 - INFO - Started dialogue with Joey
+2024-11-20 16:03:21,482 - INFO - Started dialogue with Joey
+2024-11-20 16:03:32,185 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: we can talk
+2024-11-20 16:03:32,185 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: we can talk
+2024-11-20 16:03:35,917 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *shifts uncomfortably, glancing around the hallway*
+
+I... I don't know if talking is the best idea right now. There's a lot going on, and I'm not sure I can explain it all.
+2024-11-20 16:03:35,917 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *shifts uncomfortably, glancing around the hallway*
+
+I... I don't know if talking is the best idea right now. There's a lot going on, and I'm not sure I can explain it all.
+2024-11-20 16:03:55,985 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: that's fine, i am hearing
+2024-11-20 16:03:55,985 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: that's fine, i am hearing
+2024-11-20 16:04:00,224 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *sighs deeply, rubbing the back of his neck*
+
+I appreciate that... really. It's just... hard to know where to start. There's something strange happening, and I can't seem to make sense of it.
+2024-11-20 16:04:00,224 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *sighs deeply, rubbing the back of his neck*
+
+I appreciate that... really. It's just... hard to know where to start. There's something strange happening, and I can't seem to make sense of it.
+2024-11-20 16:04:11,759 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: something string?
+2024-11-20 16:04:11,759 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: something string?
+2024-11-20 16:04:15,152 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *frowns slightly, trying to decipher the words*
+
+I'm not sure what you mean by "something string." Could you clarify? It might help me understand what you're getting at.
+2024-11-20 16:04:15,152 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *frowns slightly, trying to decipher the words*
+
+I'm not sure what you mean by "something string." Could you clarify? It might help me understand what you're getting at.
+2024-11-20 16:04:33,826 - INFO - Dialogue ended
+2024-11-20 16:04:33,826 - INFO - Dialogue ended

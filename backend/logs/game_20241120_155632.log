@@ -1,0 +1,14 @@
+2024-11-20 15:56:40,599 - INFO - Started dialogue with Joey
+2024-11-20 15:56:40,599 - INFO - Started dialogue with Joey
+2024-11-20 15:56:47,087 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: how are you
+2024-11-20 15:56:47,087 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: how are you
+2024-11-20 15:56:49,537 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *sighs deeply, still avoiding eye contact*
+I... I'm okay, I guess. Just a lot on my mind. Thanks for asking.
+2024-11-20 15:56:49,537 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *sighs deeply, still avoiding eye contact*
+I... I'm okay, I guess. Just a lot on my mind. Thanks for asking.
+2024-11-20 15:57:04,935 - INFO - Dialogue ended
+2024-11-20 15:57:04,935 - INFO - Dialogue ended

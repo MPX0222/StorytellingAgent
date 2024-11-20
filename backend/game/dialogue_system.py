@@ -5,7 +5,7 @@ import re
 
 class DialogueState(Enum):
     INACTIVE = False
-    INITIATING = "initiating"
+    INITIATING = False
     ACTIVE = True
     ENDING = "ending"
 

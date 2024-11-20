@@ -11,6 +11,7 @@
         <CharacterPanel />
       </el-aside>
     </el-container>
+    <MiniMap />
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 import GameStatus from '../components/GameStatus.vue'
 import GameDialog from '../components/GameDialog.vue'
 import CharacterPanel from '../components/CharacterPanel.vue'
+import MiniMap from '../components/MiniMap.vue'
 import { useGameStore } from '../stores/game'
 import { onMounted } from 'vue'
 
@@ -33,6 +35,7 @@ onMounted(async () => {
   min-height: 100vh;
   background-color: #1a1a1a;
   color: #fff;
+  position: relative;
 }
 
 .el-container {

@@ -32,13 +32,6 @@ async def process_dialogue(action: DialogueAction):
             message_type="user"
         )
         
-        # 添加用户输入到游戏消息
-        game_instance['state'].messages.append(GameMessage(
-            text="> " + action.message,
-            type="user",
-            speaker="player"
-        ))
-        
         # 处理对话并获取NPC回复
         speaker = game_instance['dialogue_system'].current_speaker
         llm_response = speaker.process_dialogue(action.message, game_instance['state'])
@@ -62,18 +55,18 @@ async def process_dialogue(action: DialogueAction):
             if part.startswith("*") and part.endswith("*"):
                 # 动作描述（移除星号）
                 action_text = part[1:-1].strip()
-                game_instance['state'].messages.append(GameMessage(
-                    text=action_text,
-                    type="action",
-                    speaker=speaker.name
-                ))
+                game_instance['state'].messages.append({
+                    "text": action_text,
+                    "type": "action",
+                    "speaker": speaker.name
+                })
             else:
                 # 对话内容
-                game_instance['state'].messages.append(GameMessage(
-                    text=part,
-                    type="agent",
-                    speaker=speaker.name
-                ))
+                game_instance['state'].messages.append({
+                    "text": part,
+                    "type": "agent",
+                    "speaker": speaker.name
+                })
         
         # 更新对话选项
         game_instance['dialogue_system'].available_responses = speaker.get_dialogue_options()
@@ -104,11 +97,11 @@ async def end_dialogue():
         speaker_name = game_instance['dialogue_system'].current_speaker.name
         
         # 添加结束对话的消息
-        game_instance['state'].messages.append(GameMessage(
-            text=f"Ending conversation with {speaker_name}...",
-            type="system",
-            speaker="system"
-        ))
+        game_instance['state'].messages.append({
+            "text": f"Ending conversation with {speaker_name}...",
+            "type": "system",
+            "speaker": "system"
+        })
         
         # 更新状态
         game_instance['state'].in_dialogue = False

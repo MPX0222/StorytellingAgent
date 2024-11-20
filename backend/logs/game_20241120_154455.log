@@ -1,0 +1,12 @@
+2024-11-20 15:45:09,767 - INFO - Started dialogue with Joey
+2024-11-20 15:45:09,767 - INFO - Started dialogue with Joey
+2024-11-20 15:45:18,961 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi joey, how are you
+2024-11-20 15:45:18,961 - INFO - DIALOGUE - Speaker: player | Type: user
+Message: hi joey, how are you
+2024-11-20 15:45:22,180 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, hands fidgeting with the hem of his shirt*
+I... I'm okay, I guess. Just... a lot on my mind.
+2024-11-20 15:45:22,180 - INFO - DIALOGUE - Speaker: Joey | Type: agent | Trust Level: 0.00
+Message: *glances at you briefly before looking away, hands fidgeting with the hem of his shirt*
+I... I'm okay, I guess. Just... a lot on my mind.
